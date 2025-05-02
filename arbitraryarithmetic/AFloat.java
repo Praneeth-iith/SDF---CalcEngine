@@ -20,7 +20,7 @@ public class AFloat{
      * Rejects: ".5", "0.", "-0.", ".", "abc"
      */
     private static void validateInput(String s) {
-        if (s == null || !s.matches("^[+-]?\\d+(\\.\\d+)?$")) {
+        if (s.matches("^-?\\d+(\\.\\d+)?$")) {
             throw new NumberFormatException("Invalid float input: " + s);
         }
     }
@@ -541,6 +541,11 @@ public class AFloat{
         //store originals
         AFloat divisor = parse(makeStandard(object2));
         AFloat dividend = parse(makeStandard(object1));
+         // Check for division by zero
+         if(divisor.getter().equals("0.0")){
+            throw new ArithmeticException("Division by zero error");
+        }
+
         if(dividend.getter().equals("0.0")){
             return parse("0.0");
         }
@@ -583,10 +588,7 @@ public class AFloat{
         object1.setter(magnitude1);
         object2.setter(magnitude2);
        
-        // Check for division by zero
-        if(AInteger.cleanLeadingZeroes(magnitude2).equals("0")){
-            throw new ArithmeticException("Division by zero error");
-        }
+       
 
         // Scale numerator for decimal precision
         for(int i = 0; i < precision ; i++){
