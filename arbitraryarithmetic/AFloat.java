@@ -335,7 +335,7 @@ public class AFloat{
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
         }   
-
+        //store originals
         AFloat ogObject1 = new AFloat(object1);
         AFloat ogObject2 = new AFloat(object2);
 
@@ -399,7 +399,7 @@ public class AFloat{
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
         }
-
+        //store originals
         AFloat ogObject1 = new AFloat(object1);
         AFloat ogObject2 = new AFloat(object2);
 
@@ -459,7 +459,7 @@ public class AFloat{
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
         }
-
+        //store originals
         AFloat ogObject1 = new AFloat(object1);
         AFloat ogObject2 = new AFloat(object2);
 
@@ -538,7 +538,7 @@ public class AFloat{
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
         }
-
+        //store originals
         AFloat divisor = parse(makeStandard(object2));
         AFloat dividend = parse(makeStandard(object1));
         if(dividend.getter().equals("0.0")){
