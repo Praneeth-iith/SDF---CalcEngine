@@ -1,4 +1,7 @@
+<!--When just ant is given , default target is run . this runs in root directory-->
 <project name="MyProject" default="run" basedir=".">
+<!--when ant clean is used it will delete the files in next to root directory of the form abc.class-->
+<!--also deletes the aarithmetic.jar-->
 <target name="clean">
 <delete>
 <fileset dir="." includes="/*.class"/>
@@ -6,13 +9,14 @@
 </delete>
 </target>
 
+<!--when you use ant compile it will compile all abc.java type files in all sub folders.-->     
 <target name="compile">
 <javac srcdir="." destdir="." includeantruntime="false">
 <include name="**/*.java"/>
 </javac>
 </target>
 
-
+<!--when you use ant jar it compiles first to make sure that class files are there.-->
 <target name="jar" depends="compile">
 <jar destfile="arbitraryarithmetic/aarithmetic.jar">
 <fileset dir="arbitraryarithmetic" includes="Ainteger.class,Afloat.class"/>
