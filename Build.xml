@@ -5,9 +5,14 @@
 <fileset dir="arbitraryarithmetic" includes="aarithmetic.jar"/>
 </delete>
 </target>
+
 <target name="compile">
-<javac srcdir="." destdir="." includes="/*.java" includeantruntime="false"/>
+<javac srcdir="." destdir="." includeantruntime="false">
+<include name="**/*.java"/>
+</javac>
 </target>
+
+
 <target name="jar" depends="compile">
 <jar destfile="arbitraryarithmetic/aarithmetic.jar">
 <fileset dir="arbitraryarithmetic" includes="Ainteger.class,Afloat.class"/>
@@ -17,6 +22,7 @@
 </manifest>
 </jar>
 </target>
+
 <target name="run" depends="jar">
 <java classname="MyInfArith" fork="true" classpath="arbitraryarithmetic/aarithmetic.jar:.">
 <arg line="${args}"/>

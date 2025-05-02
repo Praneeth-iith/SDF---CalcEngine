@@ -334,7 +334,11 @@ public class AFloat{
         }
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
-        }
+        }   
+
+        AFloat ogObject1 = new AFloat(object1);
+        AFloat ogObject2 = new AFloat(object2);
+
  
         // Clean leading zeroes
         cleanLeadingZeroesInIntegralPart(object1);
@@ -373,6 +377,10 @@ public class AFloat{
         // Parse and truncate to precision decimals
         AFloat answer = parse(result);
         answer.truncate(precision);
+
+        object1.setter(ogObject1.getter());
+        object2.setter(ogObject2.getter());
+
         return answer;
     }
 
@@ -391,6 +399,9 @@ public class AFloat{
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
         }
+
+        AFloat ogObject1 = new AFloat(object1);
+        AFloat ogObject2 = new AFloat(object2);
 
         // Clean leading zeroes
         cleanLeadingZeroesInIntegralPart(object1);
@@ -427,6 +438,10 @@ public class AFloat{
         // Parse and truncate to precision decimals
         AFloat answer = parse(result);
         answer.truncate(precision);
+
+        object1.setter(ogObject1.getter());
+        object2.setter(ogObject2.getter());
+
         return answer ;
     }
     
@@ -437,7 +452,6 @@ public class AFloat{
         // Validate input
         validateInput(object1.getter());
         validateInput(object2.getter());
-
         // Normalize to float format if integer
         if(object1.isInt()){
             object1.setter(object1.getter().concat(".0"));
@@ -445,6 +459,9 @@ public class AFloat{
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
         }
+
+        AFloat ogObject1 = new AFloat(object1);
+        AFloat ogObject2 = new AFloat(object2);
 
         // Determine signs
         List<String> signs = AInteger.signDecider(object1.getter(), object2.getter());
@@ -501,6 +518,9 @@ public class AFloat{
         // Parse and truncate to precision decimals
         AFloat answer = parse(resultSign.concat(finalIntegralPart.concat(".").concat(finalDecimalPart)));
         answer.truncate(precision);
+
+        object1.setter(ogObject1.getter());
+        object2.setter(ogObject2.getter());
         return answer;
     }
 
@@ -518,8 +538,12 @@ public class AFloat{
         if(object2.isInt()){
             object2.setter(object2.getter().concat(".0"));
         }
+
         AFloat divisor = parse(makeStandard(object2));
         AFloat dividend = parse(makeStandard(object1));
+        if(dividend.getter().equals("0.0")){
+            return parse("0.0");
+        }
 
         String decimalPart1  = object1.decimalPart();
         String decimalPart2  = object2.decimalPart();
@@ -556,11 +580,9 @@ public class AFloat{
         List<String> magnitudes = magnitudeMaker(num1, num2, sign1, sign2);
         String magnitude1 = magnitudes.get(0);
         String magnitude2 = magnitudes.get(1);
-        AInteger.cleanLeadingZeroes(magnitude1);
-        AInteger.cleanLeadingZeroes(magnitude2);
         object1.setter(magnitude1);
         object2.setter(magnitude2);
-        
+       
         // Check for division by zero
         if(AInteger.cleanLeadingZeroes(magnitude2).equals("0")){
             throw new ArithmeticException("Division by zero error");
@@ -605,11 +627,13 @@ public class AFloat{
         if(!multiplication(answer,divisor).getter().equals(dividend.getter())){
             int finalcount = answer.decimalPlaces();
             String ans = answer.getter();
-            for(int i = finalcount ; i <= 30 ; i++){
+            for(int i = finalcount ; i < 30 ; i++){
                 ans += "0";
             }
             answer.setter(ans);
         }
+        object1.setter(dividend.getter());
+        object2.setter(divisor.getter());
         answer.truncate(precision);
         return answer;
     }
