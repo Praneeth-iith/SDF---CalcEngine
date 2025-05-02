@@ -1,5 +1,5 @@
 # CalcEngine - An Arbitrary Precision Calculator
-##Introduction :
+## Introduction :
 CalcEngine is like a Calculator which can compute some basic operations like Addition , Subtraction , Multiplication , Division for both integers and floating point number.It can have arbitrary precision according to your comfort. Here you can do Arithmetic Operations on numbers which standard java can't afford to store.
 
 ## Java Number Limits
@@ -64,8 +64,8 @@ use **javac -cp .;arbitraryarithmetic/aarithmetic.jar yourmain.java** to compile
 ### 3. To run the code 
 use **java -cp .;arbitraryarithmetic/aarithmetic.jar yourmain.java** to run 
 
-##How to write code ?
-###AInteger 
+## How to write code ?
+### AInteger 
 You will have the public methods `parse` for creation of instance , methods like addition , subtraction , division , multiplication expect 2 arguments and they do what their names are suggesting .For example if you want to add 15, 25 write **AInteger.addition(parse("15"),parse("25))** it will return you a object of type AInteger , you can use .getter() to see the answer i.e 40.
-###AFloat
+### AFloat
 Apart from the public methods in AInteger you will have a public method `setPrecision` here which expects an integer argument. You can set the Precision arbitrarily from this function. The default precision is set to 30. For example if you want to add 12.25 , 1.5 then you can write **AFloat.addition(parse("12.25"),parse("1.5"))** and use .getter() to see the answer i.e 13.75. Note that you can give integers as well in the argumnets.
