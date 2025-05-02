@@ -9,7 +9,7 @@ Java provides several built-in primitive types for storing numeric values, each 
 - `int`: -2,147,483,648 to 2,147,483,647 (32-bit signed)
 - `long`: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 (64-bit signed)
 - `float`: Approximately ±3.4e38 with ~7 digits of precision (32-bit)
-- `double`: Approximately ±1.8e308 with ~15 digits of precision (64-bit)
+- `double`: Approximately ±1.8e308 with ~15 digits of precision (64-bit).
 
 But our Calculator Engine supports numbers of the order approximately 10^INTMAX. That is  Why you should use this.
 # CalcEngine
